@@ -17,6 +17,21 @@
   margin: 0;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  display: block;
+  width: auto;
+  height: 48px;
+  object-fit: contain;
+}
+
 .nav ul {
   display: flex;
   list-style: none;

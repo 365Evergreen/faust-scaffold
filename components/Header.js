@@ -7,8 +7,15 @@ export default function Header({ siteTitle, siteDescription, menuItems }) {
     <header className={style.header}>
       <div className={`container ${style.container}`}>
         <Link href="/" className={style.brand}>
-          <h2 className={style.siteTitle}>{siteTitle}</h2>
-          <p className={style.siteDescription}>{siteDescription}</p>
+          <img
+            src="https://pauli.blob.core.windows.net/365-evergreen/assets/Evergreen_Logo__512px.png"
+            alt="Evergreen logo"
+            className={style.logo}
+          />
+          <div>
+            <h2 className={style.siteTitle}>{siteTitle}</h2>
+            <p className={style.siteDescription}>{siteDescription}</p>
+          </div>
         </Link>
 
         <nav className={style.nav}>

@@ -7,7 +7,7 @@ import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
 import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
 import { POST_LIST_FRAGMENT } from "../fragments/PostListFragment";
 import PostListItem from "../components/PostListItem";
-import { getNextStaticProps } from "@faustwp/core";
+import { getStaticPropsNoRevalidate } from "./getStaticPropsNoRevalidate";
 import { useState } from "react";
 import styles from "../styles/archive.module.css";
 
@@ -144,9 +144,8 @@ export default function ArchivePage(props) {
 }
 
 export async function getStaticProps(context) {
-  return getNextStaticProps(context, {
+  return getStaticPropsNoRevalidate(context, {
     Page: ArchivePage,
-    revalidate: 60,
   });
 }
 

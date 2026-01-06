@@ -11,7 +11,7 @@
     "test:format": "prettier . --check"
   },
   "dependencies": {
-    "@apollo/client": "^3.13.8",
+    "@apollo/client": "3.13.8",
     "@faustwp/blocks": "^6.1.6",
     "@faustwp/cli": "^3.2.3",
     "@faustwp/core": "^3.2.6",

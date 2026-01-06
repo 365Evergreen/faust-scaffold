@@ -1,9 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 import Head from "next/head";
-import Header from "../components/header";
+import Header from "../components/Header";
 import EntryHeader from "../components/EntryHeader";
 import Footer from "../components/Footer";
-import { getNextStaticProps } from "@faustwp/core";
+import { getStaticPropsNoRevalidate } from "../wp-templates/getStaticPropsNoRevalidate";
 
 /**
  * Next.js file based page example with Faust helpers.
@@ -48,7 +48,7 @@ Page.query = gql`
 `;
 
 export function getStaticProps(ctx) {
-  return getNextStaticProps(ctx, {
+  return getStaticPropsNoRevalidate(ctx, {
     Page,
   });
 }

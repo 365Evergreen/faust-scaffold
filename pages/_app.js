@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 import { addFilter } from "@wordpress/hooks";
 import "../styles/globals.css";
+import blocks from "../wp-blocks";
+import { WordPressBlocksProvider } from "@faustwp/blocks";
 
 // Remove deprecated/unsupported Apollo InMemoryCache option if present.
 // Faust applies `apolloClientInMemoryCacheOptions` filters when creating the client.
@@ -29,7 +31,9 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <FaustProvider pageProps={pageProps}>
-      <Component {...pageProps} key={router.asPath} />
+      <WordPressBlocksProvider config={{ blocks }}>
+        <Component {...pageProps} key={router.asPath} />
+      </WordPressBlocksProvider>
     </FaustProvider>
   );
 }

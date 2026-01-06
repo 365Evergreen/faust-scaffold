@@ -7,7 +7,7 @@ import CTA from '../components/CTA'
 import ContactForm from '../components/ContactForm'
 import FooterHome from '../components/FooterHome'
 import styles from '../styles/home.module.css'
-import { getNextStaticProps } from '@faustwp/core'
+import { getStaticPropsNoRevalidate } from '../wp-templates/getStaticPropsNoRevalidate'
 import ExampleQuery from '../queries/ExampleQuery'
 
 export default function Home() {
@@ -36,7 +36,7 @@ export default function Home() {
 Home.query = ExampleQuery
 
 export function getStaticProps(ctx) {
-  return getNextStaticProps(ctx, {
+  return getStaticPropsNoRevalidate(ctx, {
     Page: Home,
   })
 }

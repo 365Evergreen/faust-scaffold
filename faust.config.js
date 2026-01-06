@@ -6,7 +6,7 @@ import possibleTypes from "./possibleTypes.json";
 // Remove deprecated `canonizeResults` option from Apollo cache options
 // so builds with newer @apollo/client versions do not warn/fail.
 addFilter(
-  "faust.apolloClientInMemoryCacheOptions",
+  "apolloClientInMemoryCacheOptions",
   "faust-scaffold/remove-canonizeResults",
   (options) => {
     if (options && Object.prototype.hasOwnProperty.call(options, "canonizeResults")) {

@@ -7,7 +7,7 @@ import style from "../styles/front-page.module.css";
 import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
 import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
 import { useQuery } from "@apollo/client";
-import { getNextStaticProps } from "@faustwp/core";
+import { getStaticPropsNoRevalidate } from "./getStaticPropsNoRevalidate";
 
 export default function FrontPage(props) {
   // Loading state for previews
@@ -251,9 +251,8 @@ export default function FrontPage(props) {
 }
 
 export async function getStaticProps(context) {
-  return getNextStaticProps(context, {
+  return getStaticPropsNoRevalidate(context, {
     Page: FrontPage,
-    revalidate: 60,
   });
 }
 

@@ -1,11 +1,12 @@
-import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
+import { WordPressTemplate } from "@faustwp/core";
+import { getWordPressPropsNoRevalidate } from "../wp-templates/getWordPressPropsNoRevalidate";
 
 export default function Page(props) {
   return <WordPressTemplate {...props} />;
 }
 
 export function getStaticProps(ctx) {
-  return getWordPressProps({ ctx });
+  return getWordPressPropsNoRevalidate(ctx);
 }
 
 export async function getStaticPaths() {

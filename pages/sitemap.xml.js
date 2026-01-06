@@ -2,10 +2,10 @@ import { getSitemapProps } from "@faustwp/core";
 
 export default function Sitemap() {}
 
-export function getServerSideProps(ctx) {
-  return getSitemapProps(ctx, {
-    frontendUrl: process.env.NEXT_PUBLIC_SITE_URL,
-    // sitemapIndexPath: 'sitemap.xml',
-    // sitemapPathsToIgnore: ['/wp-sitemap-users-*'],
-  });
+export function getStaticProps(ctx) {
+  // Static export: skip server-side sitemap generation during static build.
+  // Returning empty props so the page is statically generated.
+  return {
+    props: {},
+  };
 }

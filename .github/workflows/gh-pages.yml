@@ -46,7 +46,7 @@ jobs:
           # Faust build (may perform Next.js build tasks)
           npm run build
           # Export a static site for GitHub Pages. Fail if export fails.
-          npx next export -o out
+          npx next export --outdir out
 
       - name: Verify export
         run: |

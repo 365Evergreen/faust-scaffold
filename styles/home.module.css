@@ -31,3 +31,20 @@
 .content {
   margin-top: 32px;
 }
+
+.postList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.postItem {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.postItem a {
+  color: #055a9d;
+  text-decoration: none;
+}
+

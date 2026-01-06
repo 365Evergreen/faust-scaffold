@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Home — Faust Scaffold</title>
+        <title>365 Evergreen</title>
       </Head>
       <main className={styles.container}>
         <HomeHero title="Welcome to the site" subtitle="Built with Faust + Next.js" />

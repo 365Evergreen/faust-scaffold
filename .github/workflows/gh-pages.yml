@@ -20,22 +20,44 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Setup environment
+        run: |
+          # Create .env.local from repo secrets when available, otherwise fall back to sample
+          if [ -n "${{ secrets.NEXT_PUBLIC_WORDPRESS_URL }}" ]; then
+            echo "NEXT_PUBLIC_WORDPRESS_URL=${{ secrets.NEXT_PUBLIC_WORDPRESS_URL }}" > .env.local
+            echo "NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}" >> .env.local
+            if [ -n "${{ secrets.FAUST_SECRET_KEY }}" ]; then
+              echo "FAUST_SECRET_KEY=${{ secrets.FAUST_SECRET_KEY }}" >> .env.local
+            fi
+          elif [ -f .env.local.sample ]; then
+            cp .env.local.sample .env.local
+          else
+            echo "NEXT_PUBLIC_WORDPRESS_URL=https://365evergreen.com" > .env.local
+            echo "NEXT_PUBLIC_SITE_URL=https://365evergreen.github.io/faust-scaffold/" >> .env.local
+          fi
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build site
-        env:
-          # Public WordPress URL (no auth required for GitHub Pages builds)
-          NEXT_PUBLIC_WORDPRESS_URL: https://365evergreen.com
-          NEXT_PUBLIC_SITE_URL: https://365evergreen.github.io/faust-scaffold/
         run: |
           # Regenerate possible types if schema is available from WP
-          npm run generate || true
+          npm run generate
           # Faust build (may perform Next.js build tasks)
           npm run build
-          # Try to export a static site for GitHub Pages. If your site requires server rendering,
-          # consider deploying elsewhere (Vercel, Netlify) or use a branch-based deployment.
-          npx next export -o out || true
+          # Export a static site for GitHub Pages. Fail if export fails.
+          npx next export -o out
+
+      - name: Verify export
+        run: |
+          echo "Checking for exported site files in ./out"
+          if [ ! -d out ] || [ ! -f out/index.html ]; then
+            echo "Export failed: expected ./out/index.html to exist"
+            echo "Contents of repository root:"
+            ls -la
+            if [ -d out ]; then ls -la out || true; fi
+            exit 1
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

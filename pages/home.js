@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import HomeHero from '../components/HomeHero'
 import PostList from '../components/PostList'
+import ServicesList from '../components/ServicesList'
 import styles from '../styles/home.module.css'
 import { getNextStaticProps } from '@faustwp/core'
 import ExampleQuery from '../queries/ExampleQuery'
@@ -16,6 +17,8 @@ export default function Home() {
         <section className={styles.content}>
           <h2>Latest content</h2>
           <PostList />
+          <h2 style={{ marginTop: 32 }}>Services</h2>
+          <ServicesList />
         </section>
       </main>
     </>

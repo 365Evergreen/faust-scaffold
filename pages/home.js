@@ -1,7 +1,11 @@
 import Head from 'next/head'
 import HomeHero from '../components/HomeHero'
-import PostList from '../components/PostList'
+import LatestPosts from '../components/LatestPosts'
 import ServicesList from '../components/ServicesList'
+import Features from '../components/Features'
+import CTA from '../components/CTA'
+import ContactForm from '../components/ContactForm'
+import FooterHome from '../components/FooterHome'
 import styles from '../styles/home.module.css'
 import { getNextStaticProps } from '@faustwp/core'
 import ExampleQuery from '../queries/ExampleQuery'
@@ -15,12 +19,16 @@ export default function Home() {
       <main className={styles.container}>
         <HomeHero title="Welcome to the site" subtitle="Built with Faust + Next.js" />
         <section className={styles.content}>
-          <h2>Latest content</h2>
-          <PostList />
+          <LatestPosts />
+          <Features />
           <h2 style={{ marginTop: 32 }}>Services</h2>
           <ServicesList />
+          <CTA />
+          <h2 style={{ marginTop: 32 }}>Contact</h2>
+          <ContactForm />
         </section>
       </main>
+      <FooterHome />
     </>
   )
 }

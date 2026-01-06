@@ -5,6 +5,7 @@
     "dev": "faust dev",
     "build": "faust build",
     "generate": "faust generatePossibleTypes",
+    "codegen": "graphql-codegen --config codegen.yml",
     "start": "faust start",
     "format": "prettier . --write",
     "test:format": "prettier . --check"
@@ -18,5 +19,11 @@
     "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/typescript": "^5.0.7",
+    "@graphql-codegen/typescript-operations": "^5.0.7",
+    "@graphql-codegen/typescript-react-apollo": "^4.4.0"
   }
 }

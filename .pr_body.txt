@@ -1,0 +1,7 @@
+Adds a scaffolded home page, HomeHero component, styles, and a data-driven PostList wired to queries/ExampleQuery.js.
+
+This PR is intended to provide a minimal repro for a bug with the GraphQL query composer — the example query and PostList demonstrate current composed query behavior. Please review and let me know what additional repro steps you need.
+
+Changes: pages/home.js, components/HomeHero.js, components/PostList.js, styles/home.module.css, queries/ExampleQuery.js
+
+Rendered site preview: /home

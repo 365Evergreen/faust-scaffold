@@ -1,0 +1,44 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        env:
+          # Public WordPress URL (no auth required for GitHub Pages builds)
+          NEXT_PUBLIC_WORDPRESS_URL: https://365evergreen.com
+          NEXT_PUBLIC_SITE_URL: https://365evergreen.github.io/faust-scaffold/
+        run: |
+          # Regenerate possible types if schema is available from WP
+          npm run generate || true
+          # Faust build (may perform Next.js build tasks)
+          npm run build
+          # Try to export a static site for GitHub Pages. If your site requires server rendering,
+          # consider deploying elsewhere (Vercel, Netlify) or use a branch-based deployment.
+          npx next export -o out || true
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out

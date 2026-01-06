@@ -8,14 +8,17 @@ export default function Features() {
   ]
 
   return (
-    <section className={styles.features}>
-      {cards.map((c) => (
-        <div key={c.title} className={styles.featureCard}>
-          <div className={styles.featureIcon}>★</div>
-          <h3>{c.title}</h3>
-          <p>{c.body}</p>
-        </div>
-      ))}
+    <section className={styles.features} aria-labelledby="features-heading">
+      <h2 id="features-heading" className={styles.visuallyHidden}>Features</h2>
+      <ul className={styles.featureList}>
+        {cards.map((c) => (
+          <li key={c.title} className={styles.featureCard}>
+            <div className={styles.featureIcon} aria-hidden="true">★</div>
+            <h3>{c.title}</h3>
+            <p>{c.body}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }

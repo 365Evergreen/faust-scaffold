@@ -13,10 +13,10 @@ export default function PostList() {
   if (posts.length === 0) return <p>No posts found.</p>
 
   return (
-    <ul className={styles.postList}>
+    <ul className={styles.postList} aria-live="polite">
       {posts.map((post) => (
         <li key={post.id} className={styles.postItem}>
-          <a href={`/${post.slug}`}>{post.title}</a>
+          <a href={`/${post.slug}`} aria-label={`Read post ${post.title}`}>{post.title}</a>
         </li>
       ))}
     </ul>

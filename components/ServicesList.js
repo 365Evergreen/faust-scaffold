@@ -12,16 +12,17 @@ export default function ServicesList() {
   if (items.length === 0) return <p>No services found.</p>
 
   return (
-    <div className={styles.services}>
+    <section className={styles.services} aria-labelledby="services-heading">
+      <h2 id="services-heading" className={styles.visuallyHidden}>Services</h2>
       {items.map((s, i) => (
-        <article key={i} className={styles.serviceItem}>
-          <h3 dangerouslySetInnerHTML={{ __html: s.title }} />
+        <article key={i} className={styles.serviceItem} aria-labelledby={`service-title-${i}`}>
+          <h3 id={`service-title-${i}`} dangerouslySetInnerHTML={{ __html: s.title }} />
           {s.featuredImage?.node?.sourceUrl && (
-            <img src={s.featuredImage.node.sourceUrl} alt="" className={styles.serviceImage} />
+            <img src={s.featuredImage.node.sourceUrl} alt={s.title || `Service ${i + 1}`} className={styles.serviceImage} />
           )}
           <div dangerouslySetInnerHTML={{ __html: s.content }} />
         </article>
       ))}
-    </div>
+    </section>
   )
 }

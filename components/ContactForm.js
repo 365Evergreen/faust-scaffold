@@ -15,21 +15,22 @@ export default function ContactForm() {
   }
 
   return (
-    <form id="contact" className={styles.contactForm} onSubmit={handleSubmit}>
-      <label>
+    <form id="contact" className={styles.contactForm} onSubmit={handleSubmit} aria-labelledby="contact-heading">
+      <h2 id="contact-heading" className={styles.visuallyHidden}>Contact form</h2>
+      <label htmlFor="contact-name">
         Name
-        <input name="name" value={form.name} onChange={handleChange} />
+        <input id="contact-name" name="name" value={form.name} onChange={handleChange} aria-required="true" />
       </label>
-      <label>
+      <label htmlFor="contact-email">
         Email
-        <input name="email" type="email" value={form.email} onChange={handleChange} />
+        <input id="contact-email" name="email" type="email" value={form.email} onChange={handleChange} aria-required="true" />
       </label>
-      <label>
+      <label htmlFor="contact-message">
         Message
-        <textarea name="message" value={form.message} onChange={handleChange} />
+        <textarea id="contact-message" name="message" value={form.message} onChange={handleChange} aria-required="true" />
       </label>
       <button type="submit">Send</button>
-      {status && <p className={styles.formStatus}>{status}</p>}
+      <div aria-live="polite" aria-atomic="true">{status && <p className={styles.formStatus}>{status}</p>}</div>
     </form>
   )
 }

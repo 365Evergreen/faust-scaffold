@@ -16,6 +16,44 @@ body {
     sans-serif;
 }
 
+:root {
+  /* Theme variables from theme.json */
+  --theme-primary: #167500;
+  --theme-lighter-alt: #f1f9f0;
+  --theme-lighter: #cbe9c4;
+  --theme-light: #a1d696;
+  --theme-tertiary: #58ac45;
+  --theme-secondary: #268610;
+  --theme-dark-alt: #136a00;
+  --theme-dark: #105900;
+  --theme-darker: #0c4200;
+
+  --neutral-lighter-alt: #faf9f8;
+  --neutral-lighter: #f3f2f1;
+  --neutral-light: #edebe9;
+  --neutral-quaternary-alt: #e1dfdd;
+  --neutral-quaternary: #d0d0d0;
+  --neutral-tertiary-alt: #c8c6c4;
+  --neutral-tertiary: #a19f9d;
+  --neutral-secondary: #605e5c;
+  --neutral-primary-alt: #3b3a39;
+  --neutral-primary: #323130;
+  --neutral-dark: #201f1e;
+
+  --black: #000000;
+  --white: #ffffff;
+
+  /* Common aliases */
+  --color-bg: var(--neutral-lighter);
+  --color-card-bg: var(--white);
+  --color-border: var(--neutral-quaternary-alt);
+  --color-text: var(--neutral-primary);
+  --color-accent: var(--theme-primary);
+  --color-accent-strong: var(--theme-dark-alt);
+  --color-cta-from: var(--theme-darker);
+  --color-cta-to: var(--theme-primary);
+}
+
 a {
   color: inherit;
   text-decoration: none;

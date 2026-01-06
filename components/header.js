@@ -13,11 +13,22 @@ export default function Header({ siteTitle, siteDescription, menuItems }) {
 
         <nav className={style.nav}>
           <ul>
-            {(Array.isArray(menuItems) ? menuItems : []).map((item) => (
-              <li key={item.id}>
-                <Link href={item.uri}>{item.label}</Link>
-              </li>
-            ))}
+            {(Array.isArray(menuItems) ? menuItems : []).map((item) => {
+              const getHref = (url) => {
+                try {
+                  const base = process.env.NEXT_PUBLIC_SITE_URL || "/";
+                  return new URL(url, base).pathname;
+                } catch (e) {
+                  return url;
+                }
+              };
+
+              return (
+                <li key={item.url}>
+                  <Link href={getHref(item.url)}>{item.label}</Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>
@@ -32,17 +43,12 @@ Header.fragments = {
         title
         description
       }
-      primaryMenuItems: menuItems(where: { location: PRIMARY }) {
+      menus(where: { location: PRIMARY }) {
         nodes {
-          id
-          uri
-          path
-          label
-          parentId
-          cssClasses
-          menu {
-            node {
-              name
+          menuItems {
+            nodes {
+              label
+              url
             }
           }
         }

@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import Head from "next/head";
-import Header from "../components/Header";
+import Header from "../components/header";
 import EntryHeader from "../components/EntryHeader";
 import Footer from "../components/Footer";
 import { getNextStaticProps } from "@faustwp/core";
@@ -13,7 +13,10 @@ export default function Page() {
 
   const { title: siteTitle, description: siteDescription } =
     data.generalSettings;
-  const menuItems = data.primaryMenuItems.nodes;
+  const menuItems =
+    (data.menus && data.menus.nodes && data.menus.nodes[0] && data.menus.nodes[0].menuItems
+      ? data.menus.nodes[0].menuItems.nodes
+      : []);
 
   return (
     <>

@@ -45,8 +45,8 @@ jobs:
           npm run generate
           # Faust build (may perform Next.js build tasks)
           npm run build
-          # Export a static site for GitHub Pages. Fail if export fails.
-          npx next export --outdir out
+          # Next.js static export is handled by `next build` when `output: 'export'` is set in next.config.js
+          # The build will produce an `out/` directory for GitHub Pages.
 
       - name: Verify export
         run: |

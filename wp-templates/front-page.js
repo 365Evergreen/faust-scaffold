@@ -3,6 +3,13 @@ import Link from "next/link";
 import Header from "../components/Header";
 import EntryHeader from "../components/EntryHeader";
 import Footer from "../components/Footer";
+import HomeHero from "../components/HomeHero";
+import LatestPosts from "../components/LatestPosts";
+import ServicesList from "../components/ServicesList";
+import Features from "../components/Features";
+import CTA from "../components/CTA";
+import ContactForm from "../components/ContactForm";
+import FooterHome from "../components/FooterHome";
 import style from "../styles/front-page.module.css";
 import { SITE_DATA_QUERY } from "../queries/SiteSettingsQuery";
 import { HEADER_MENU_QUERY } from "../queries/MenuQueries";
@@ -39,6 +46,18 @@ export default function FrontPage(props) {
 
       <main className="container">
         <EntryHeader title="Welcome to the Faust Scaffold Blueprint" />
+
+        <HomeHero title={siteTitle || 'Welcome to the site'} subtitle={siteDescription || ''} />
+
+        <section className={style.homeSections}>
+          <LatestPosts />
+          <Features />
+          <h2 style={{ marginTop: 32 }}>Services</h2>
+          <ServicesList />
+          <CTA />
+          <h2 style={{ marginTop: 32 }}>Contact</h2>
+          <ContactForm />
+        </section>
 
         <section className={style.cardGrid}>
           <Link
